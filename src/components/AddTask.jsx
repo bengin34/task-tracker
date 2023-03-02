@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
-const AddTask = () => {
+const AddTask = ({ addNewTask }) => {
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newTask = { id: uuidv4(), title, date };
+    addNewTask(newTask);
+
+    setTitle("");
+    setDate("");
+  };
+
   return (
     <div className="container items-center text-center mt-3">
-      <form className="container p-2">
+      <form className="container p-2" onSubmit={handleSubmit}>
         <div className="mb-6">
           <label
             htmlFor="email"
@@ -12,9 +25,11 @@ const AddTask = () => {
             Task
           </label>
           <input
-            type="text"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Add Task"
+            type="text"
+            placeholder="e.g. Study React Hooks"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             required
           />
         </div>
@@ -26,9 +41,9 @@ const AddTask = () => {
             Day & Time
           </label>
           <input
-            placeholder="Enter Day and Time"
-            type="password"
-            id="password"
+            type="datetime-local"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             required
           />
@@ -36,9 +51,9 @@ const AddTask = () => {
         <div className="flex items-start mb-6"></div>
         <button
           type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center "
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full  px-5 py-2.5 text-center "
         >
-          Submit
+          Add Task
         </button>
       </form>
     </div>
