@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Task from './Task'
 
 
-const Tasks = ({tasks,handleDelete}) => {
+const Tasks = ({tasks,handleDelete,showAlert }) => {
 
   return (
     <div>
     {tasks.map((task) => {
-     return <Task task={task} handleDelete={handleDelete} key={task.id} />
+     return <Task task={task} showAlert={showAlert}  handleDelete={handleDelete} key={task.id} />
 
     })
 
