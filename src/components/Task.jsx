@@ -23,7 +23,7 @@ const Task = ({ task, handleDelete, showAlert }) => {
   return (
     <div className="w-full p-4">
       <div
-        onClick={handleToggle}
+       
         className={`block p-3 text-base font-bold text-gray-900 rounded-lg ${
           completed
             ? "bg-red-800 line-through"
@@ -32,7 +32,7 @@ const Task = ({ task, handleDelete, showAlert }) => {
       >
         <div className="flex ">
           {" "}
-          <span className="flex-1 ml-3 whitespace-nowrap">{task.title}</span>
+          <span  onClick={handleToggle} className="flex-1 ml-3 whitespace-nowrap">{task.title}</span>
           <button
             onClick={() => handleDelete(task.id)}
             className="inline-flex text-right px-2 py-0.5 ml-3 text-xs font-mediumrounded"
