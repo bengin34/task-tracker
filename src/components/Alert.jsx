@@ -8,7 +8,9 @@ const Alert = ({color, msg,removeAlert,tasks}) => {
         },1000 )
         return () => clearTimeout(timeout)
       },[tasks])
-  return <div className={`text-center text-lg bg-${color}-500`}> {msg}</div>
+  return <div className={`text-center text-lg `}
+  style= {{ color:color }}
+  > {msg}</div>
 }
 
 export default Alert

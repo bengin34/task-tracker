@@ -4,9 +4,21 @@ import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import Alert from "./components/Alert";
 
+const getLocalStorage = () => {
+  let tasks = localStorage.getItem ( 'tasks');
+  if(tasks){
+    return JSON.parse(localStorage.getItem('tasks'))
+  }
+  else{
+    return[]
+  }
+
+}
+
+
 function App() {
   const [showAddTaskBar, setShowAddTaskBar] = useState(true);
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(getLocalStorage());
   const [alert, setAlert] = useState({
     show: false,
     color: "",
@@ -15,6 +27,10 @@ function App() {
 
   const hideShowAddTaskBar = () => {
     setShowAddTaskBar(!showAddTaskBar);
+  };
+
+  const showAlert = (show = false, color = "", msg = "") => {
+    setAlert({ show, color, msg });
   };
 
   const handleAddTask = (newTask) => {
@@ -27,11 +43,11 @@ function App() {
     setTasks(tasks.filter((item) => item.id !== id));
   };
 
-  const showAlert = (show = false, color = "", msg = "") => {
-    setAlert({ show, color, msg });
-  };
 
-  useEffect(() => {}, [tasks]);
+ 
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks]);
 
   return (
     <div className="App">

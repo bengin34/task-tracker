@@ -15,9 +15,9 @@ const Task = ({ task, handleDelete, showAlert }) => {
 
   const handleToggle = () => {
     setCompleted(!completed);
-    !completed
-      ? showAlert(true, "green", `${task.title} is completed`)
-      : showAlert(true, "green", `${task.title} is uncompleted`);
+    (!completed
+      ? showAlert(true, "yellow", `${task.title} is completed 🚀🚀🚀`)
+      : showAlert(true, "white", `${task.title} is uncompleted`));
   };
 
   return (
